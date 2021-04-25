@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/redux-formation.iml" filepath="$PROJECT_DIR$/redux-formation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redux-tasks.iml" filepath="$PROJECT_DIR$/redux-tasks.iml" />
     </modules>
   </component>
 </project>
