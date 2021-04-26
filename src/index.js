@@ -2,16 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import { createStore } from "redux";
+import tasksApp from './reducers/tasks'
+import {addTask, delTask, setVisibilityFilter, VisibilityFilters} from "./actions/tasks";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const store = createStore(tasksApp);
+console.log(store.getState());
+
+const unsubscribe = store.subscribe(() => {console.log(store.getState());})
+
+store.dispatch(addTask('FIRST TASK'))
+store.dispatch(addTask('SECOND TASK'))
+store.dispatch(addTask('GO SHOPPING'))
+store.dispatch(addTask('GO SWIMMING POOL'))
+
+store.dispatch(delTask(0))
+store.dispatch(delTask(1))
+
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_ALL))
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_DELETED))
+
+unsubscribe();

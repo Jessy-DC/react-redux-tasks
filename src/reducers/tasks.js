@@ -2,7 +2,7 @@ import {ADD_TASK, DEL_TASK} from "../actions/tasks";
 
 let taskId = 0
 
-function tasks(state = [], action) {
+export default function tasks(state = [], action) {
     switch(action.type) {
         case ADD_TASK:
             return [
@@ -20,5 +20,8 @@ function tasks(state = [], action) {
                 }
                 return task;
             })
+            break;
+        default:
+            return state;
     }
 }
