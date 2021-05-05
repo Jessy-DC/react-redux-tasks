@@ -1,27 +1,40 @@
-import {ADD_TASK, DEL_TASK} from "../actions/tasks";
+import { ADD_TASK, DEL_TASK } from "../actions/tasks";
 
-let taskId = 0
+/**
+ * {
+    id : 0,
+    text : action.text,
+    deleted:false
+   }
+ * @param {*} state 
+ * @param {*} action 
+ */
 
-export default function tasks(state = [], action) {
-    switch(action.type) {
+let taksId = 0;
+
+function tasks(state = [], action){
+   //return state;
+    switch (action.type) {
         case ADD_TASK:
             return [
                 ...state,
                 {
-                    id: taskId++,
-                    text: action.text,
-                    deleted: false
+                    id : taksId++,
+                    text : action.text,
+                    deleted:false
                 }
             ];
         case DEL_TASK:
-            state.map((task, index) => {
-                if(index === action.index) {
-                    task.deleted = true
+            return state.map((task,index) => {
+                if (index === action.index){
+                    task.deleted =  !task.deleted;
                 }
                 return task;
             })
-            break;
         default:
-            return state;
+                return state
     }
+   
 }
+
+export default tasks;
