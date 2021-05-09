@@ -2,22 +2,30 @@ import TaskList from '../components/taskList';
 import {connect} from 'react-redux';
 import { delTask } from '../actions/tasks';
 
-const getVisibleTasks = (tasks, filter) => {
+const getVisibleTasks = (tasks,filter) => {
     switch (filter) {
         case 'SHOW_ALL':
-            return tasks;
+            return tasks
         case 'SHOW_DELETED':
-            return tasks.filter(t => t.deleted);
+            return tasks.filter(t=> t.deleted);
         case 'SHOW_ACTIVE':
-            return tasks.filter(t => !t.deleted);
+                return tasks.filter(t=> !t.deleted);
+        case 'SHOW_API':
+            return tasks
         default:
-            return tasks;
+            return tasks
     }
 }
 
 const mapStateToProps = state => {
+    let tasks =[];
+    if (state.visibilityFilter === 'SHOW_API') {
+        tasks = state.apiTasks.tasks
+    } else {
+        tasks = state.tasks;
+    }
    return {
-    tasks : getVisibleTasks(state.tasks, state.visibilityFilter)
+    tasks : getVisibleTasks(tasks, state.visibilityFilter)
    } 
 }
 
@@ -27,6 +35,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(delTask(id))
         }
     }
+    
 }
 
 const VisibleTaskList = connect(

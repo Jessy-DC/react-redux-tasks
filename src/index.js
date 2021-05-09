@@ -5,11 +5,16 @@ import App from './App';
 
 import {createStore} from 'redux';
 import {Provider} from 'react-redux'
+import thunk from "redux-thunk";
+import {applyMiddleware} from "redux";
+import {createLogger} from "redux-logger/src";
 
 import tasksApp from './reducers'
-import { addTask, delTask, setVisibilityFilter, VisibilityFilters } from './actions/tasks';
 
-const store = createStore(tasksApp)
+//Middleware logger redux
+const logger = createLogger();
+
+const store = createStore(tasksApp, applyMiddleware(thunk, logger))
 
 console.log("INITIAL STATE REDUX" , store.getState())
 

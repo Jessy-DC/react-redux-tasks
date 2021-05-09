@@ -10,6 +10,7 @@ export const VisibilityFilters = {
     SHOW_ALL : 'SHOW_ALL',
     SHOW_DELETED : 'SHOW_DELETED',
     SHOW_ACTIVE : 'SHOW_ACTIVE',
+    SHOW_API: 'SHOW_API'
 }
 /**
  * 
