@@ -4,7 +4,7 @@ import Task from './task'
 
 const TaskList = ({tasks, onTaskclick}) => (
     <ul>
-       {tasks.tasks.map((task, index) => (
+       {tasks.map((task, index) => (
             <Task key={index} {...task} onClick={()=>onTaskclick(index)} />
        ))
        }
